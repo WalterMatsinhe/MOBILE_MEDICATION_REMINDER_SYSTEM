@@ -89,21 +89,23 @@ export default function PatientsManagement({ patients, onAddPatient, initialOpen
   })
 
   return (
-    <div className="space-y-4 sm:space-y-6 font-sans">
+    <div className="space-y-6 font-sans">
       
-      {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-xs">
+      {/* 1. PROFESSIONAL CLINICAL HEADER */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
-            <Users className="w-4 h-4" /> Chronic Disease Clinical Management
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-1">
+            <span>Clinical Cohort</span>
+            <span>•</span>
+            <span className="text-blue-600 font-bold">Specific Objective 1 & 2</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-black text-slate-900">
-            {isFormOpen ? 'New Patient Registration' : 'Patient Registry'}
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            {isFormOpen ? 'New Patient Enrollment' : 'Patient Registry & Clinical Cohort'}
           </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-3xl leading-relaxed">
             {isFormOpen 
-              ? 'Record demographic details, caregiver contacts, appointments, and medication refill dates.'
-              : `Total of ${patients.length} patients monitored for HIV and Diabetes.`}
+              ? 'Enroll chronic disease patient, configure SMS notification triggers, medication schedule, and clinic refill dates.'
+              : `Comprehensive registry of ${patients.length} active patients with automated reminder telemetry for HIV (ART) and Diabetes mellitus.`}
           </p>
         </div>
 
@@ -111,9 +113,9 @@ export default function PatientsManagement({ patients, onAddPatient, initialOpen
           {isFormOpen ? (
             <button
               onClick={() => setIsFormOpen(false)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-bold rounded-xl transition cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold rounded-lg shadow-2xs transition cursor-pointer"
             >
-              <ArrowLeft className="w-4 h-4" /> Back to Registry
+              <ArrowLeft className="w-3.5 h-3.5" /> Back to Registry
             </button>
           ) : (
             <button
@@ -138,9 +140,9 @@ export default function PatientsManagement({ patients, onAddPatient, initialOpen
                 })
                 setIsFormOpen(true)
               }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-500/20 transition cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-xs transition cursor-pointer"
             >
-              <UserPlus className="w-4 h-4" /> New Patient
+              <UserPlus className="w-3.5 h-3.5" /> Enroll Patient
             </button>
           )}
         </div>
@@ -410,19 +412,21 @@ export default function PatientsManagement({ patients, onAddPatient, initialOpen
         </form>
       ) : (
         /* VIEW B: PATIENTS LIST TABLE */
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden space-y-4 p-4 sm:p-5">
+        <div className="bg-white rounded-xl border border-slate-200/90 shadow-2xs overflow-hidden">
           
           {/* Filters Row */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 sm:pb-0">
+          <div className="p-4 sm:p-5 border-b border-slate-200/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            
+            {/* Segmented Control */}
+            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-xs font-medium self-start sm:self-auto">
               {['All', 'HIV', 'Diabetes'].map((cond) => (
                 <button
                   key={cond}
                   onClick={() => setConditionFilter(cond)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition cursor-pointer shrink-0 ${
+                  className={`px-3 py-1 rounded-md transition cursor-pointer ${
                     conditionFilter === cond
-                      ? 'bg-blue-600 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      ? 'bg-white text-slate-900 font-semibold shadow-2xs'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   {cond}
@@ -430,47 +434,55 @@ export default function PatientsManagement({ patients, onAddPatient, initialOpen
               ))}
             </div>
 
+            {/* Quick Search */}
             <div className="relative w-full sm:w-72">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by name or phone..."
-                className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Search by name, phone, or area..."
+                className="w-full pl-9 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
 
-          {/* Table Container with smooth horizontal scroll */}
-          <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
-            <table className="w-full text-left text-xs min-w-[620px]">
-              <thead className="border-b border-slate-200 text-slate-400 uppercase tracking-wider text-[10px] bg-slate-50/50">
+          {/* Table Container */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-slate-50/75 border-b border-slate-200/80 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                 <tr>
-                  <th className="py-3 px-3 font-bold">Patient</th>
-                  <th className="py-3 px-3 font-bold">Condition</th>
-                  <th className="py-3 px-3 font-bold">Phone</th>
-                  <th className="py-3 px-3 font-bold">Next Appt</th>
-                  <th className="py-3 px-3 font-bold">Next Refill</th>
-                  <th className="py-3 px-3 font-bold">Status</th>
-                  <th className="py-3 px-3 font-bold text-right">Action</th>
+                  <th className="py-3 px-4">Patient & Cohort</th>
+                  <th className="py-3 px-3">Condition Regimen</th>
+                  <th className="py-3 px-3">Contact Telemetry</th>
+                  <th className="py-3 px-3">Next Visit</th>
+                  <th className="py-3 px-3">Next Refill</th>
+                  <th className="py-3 px-3">Adherence Status</th>
+                  <th className="py-3 px-4 text-right">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-700">
                 {filteredPatients.map((p) => (
-                  <tr key={p.id} className="hover:bg-slate-50/80 transition">
-                    <td className="py-3.5 px-3 font-bold text-slate-900 flex items-center gap-2.5 whitespace-nowrap">
-                      <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold shrink-0">
-                        {p.name.charAt(0)}
-                      </div>
-                      <div>
-                        <div>{p.name}</div>
-                        <div className="text-[10px] text-slate-400 font-normal">{p.neighborhood} • {p.age} yrs ({p.gender})</div>
+                  <tr key={p.id} className="hover:bg-slate-50/80 transition-colors">
+                    
+                    {/* Patient Name & Details */}
+                    <td className="py-3 px-4 whitespace-nowrap">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200">
+                          {p.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-slate-900">{p.name}</div>
+                          <div className="text-[10px] text-slate-400 font-normal">
+                            {p.neighborhood} • {p.age}y ({p.gender}) · ID: {p.id}
+                          </div>
+                        </div>
                       </div>
                     </td>
 
-                    <td className="py-3.5 px-3 whitespace-nowrap">
-                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold ${
+                    {/* Condition */}
+                    <td className="py-3 px-3 whitespace-nowrap">
+                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium ${
                         p.condition.includes('HIV') && p.condition.includes('Diabetes')
                           ? 'bg-purple-50 text-purple-700 border border-purple-200'
                           : p.condition.includes('HIV')
@@ -481,36 +493,42 @@ export default function PatientsManagement({ patients, onAddPatient, initialOpen
                       </span>
                     </td>
 
-                    <td className="py-3.5 px-3 font-mono text-slate-600 whitespace-nowrap">
-                      {p.phone}
+                    {/* Phone & Channel */}
+                    <td className="py-3 px-3 font-mono text-slate-600 whitespace-nowrap">
+                      <div className="text-slate-800 font-semibold">{p.phone}</div>
+                      <div className="text-[10px] text-slate-400 font-normal">Kin: {p.contactPerson} ({p.relationship})</div>
                     </td>
 
-                    <td className="py-3.5 px-3 font-mono text-slate-700 whitespace-nowrap">
+                    {/* Next Appointment */}
+                    <td className="py-3 px-3 font-mono text-slate-700 whitespace-nowrap">
                       {p.nextAppointment}
                     </td>
 
-                    <td className="py-3.5 px-3 font-mono text-slate-700 whitespace-nowrap">
+                    {/* Next Refill */}
+                    <td className="py-3 px-3 font-mono text-slate-700 whitespace-nowrap">
                       {p.nextRefill}
                     </td>
 
-                    <td className="py-3.5 px-3 whitespace-nowrap">
+                    {/* Adherence Status */}
+                    <td className="py-3 px-3 whitespace-nowrap">
                       {p.unconfirmedRemindersCount >= 3 ? (
-                        <span className="inline-flex items-center gap-1 text-rose-600 font-bold text-[11px]">
-                          <AlertTriangle className="w-3.5 h-3.5" /> At Risk ({p.unconfirmedRemindersCount})
+                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium bg-rose-50 text-rose-700 border border-rose-200">
+                          <AlertTriangle className="w-3 h-3 text-rose-600" /> At Risk ({p.unconfirmedRemindersCount})
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-emerald-600 font-bold text-[11px]">
-                          <CheckCircle2 className="w-3.5 h-3.5" /> Active
+                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Active (Normal)
                         </span>
                       )}
                     </td>
 
-                    <td className="py-3.5 px-3 text-right whitespace-nowrap">
+                    {/* Action */}
+                    <td className="py-3 px-4 text-right whitespace-nowrap">
                       <button
                         onClick={() => setSelectedPatientModal(p)}
-                        className="px-2.5 py-1 text-xs font-bold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-lg transition cursor-pointer"
+                        className="px-2.5 py-1 text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-md transition cursor-pointer border border-blue-200/60"
                       >
-                        View Details
+                        Clinical File
                       </button>
                     </td>
                   </tr>
@@ -525,8 +543,8 @@ export default function PatientsManagement({ patients, onAddPatient, initialOpen
       {/* Responsive Patient Detail Modal */}
       {selectedPatientModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 z-50">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-start justify-between border-b pb-3">
+          <div className="bg-white rounded-xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-start justify-between border-b border-slate-200 pb-3">
               <div>
                 <h3 className="text-base sm:text-lg font-black text-slate-900">{selectedPatientModal.name}</h3>
                 <p className="text-xs text-slate-500">ID: {selectedPatientModal.id} • {selectedPatientModal.condition}</p>

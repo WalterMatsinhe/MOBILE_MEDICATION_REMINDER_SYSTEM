@@ -19,86 +19,101 @@ export default function MonthlyReport({ metrics }) {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6 font-sans">
+    <div className="space-y-6 font-sans">
       
-      {/* Top Controls & Header Bar */}
-      <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-        <div className="flex items-center gap-3">
+      {/* 1. PROFESSIONAL REPORT CONTROLS */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-1">
+            <span>Clinical Intelligence</span>
+            <span>•</span>
+            <span className="text-blue-600 font-bold">Specific Objective 5</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Monthly Adherence & Refill Report
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-3xl leading-relaxed">
+            Epidemiological and operational metrics on medication schedules, clinic attendance confirmation rates, and refill compliance.
+          </p>
+        </div>
+
+        {/* Month Selector & Export Actions */}
+        <div className="flex items-center gap-2.5 shrink-0">
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
-            className="w-full sm:w-auto px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            className="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer shadow-2xs"
           >
             <option value="September 2026">September 2026</option>
             <option value="August 2026">August 2026</option>
             <option value="July 2026">July 2026</option>
             <option value="June 2026">June 2026</option>
           </select>
-        </div>
 
-        <div className="flex items-center gap-2 sm:gap-2.5">
           <button
             onClick={() => handleExport('PDF')}
-            className="flex-1 sm:flex-none px-4 py-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 cursor-pointer"
+            className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-2xs transition flex items-center gap-1.5 cursor-pointer"
           >
-            <Download className="w-3.5 h-3.5" /> Generate PDF
+            <Download className="w-3.5 h-3.5" /> PDF
           </button>
           <button
             onClick={() => handleExport('Excel (.xlsx)')}
-            className="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 cursor-pointer"
+            className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg shadow-2xs transition flex items-center gap-1.5 cursor-pointer"
           >
-            <FileSpreadsheet className="w-3.5 h-3.5" /> Export Excel
+            <FileSpreadsheet className="w-3.5 h-3.5" /> Excel
           </button>
         </div>
       </div>
 
       {downloadNotice && (
-        <div className="bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl text-xs text-emerald-800 font-semibold flex items-center gap-2 animate-fade-in">
+        <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-lg text-xs text-emerald-800 font-semibold flex items-center gap-2 animate-fade-in shadow-2xs">
           <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
           <span>{downloadNotice}</span>
         </div>
       )}
 
       {/* Main Report Document Card */}
-      <div className="bg-white rounded-3xl p-4 sm:p-8 shadow-sm border border-slate-200 space-y-6 sm:space-y-8">
+      <div className="bg-white rounded-xl p-5 sm:p-7 border border-slate-200/90 shadow-2xs space-y-6">
         
         {/* Report Title */}
-        <div className="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="border-b border-slate-200/80 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-3.5">
             <img 
               src="/app-logo.png" 
               alt="Health Center X Logo" 
-              className="w-11 h-11 object-contain drop-shadow-sm shrink-0"
+              className="w-10 h-10 object-contain drop-shadow-sm shrink-0"
             />
             <div>
-              <h1 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Official Clinical Document</span>
+                <span className="text-slate-300">•</span>
+                <span className="text-[10px] font-mono text-slate-400">DOC-ID: MZ-2026-09</span>
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold text-slate-900 leading-tight">
                 Monthly Adherence Report – {selectedMonth}
-              </h1>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Specific Objective 5: Comprehensive reports on medication schedules, clinic attendance, and medication refill dates
-              </p>
+              </h2>
             </div>
           </div>
           <div className="sm:text-right shrink-0">
             <span className="text-xs font-mono text-slate-400">Issued: Nov 19, 2026</span>
-            <div className="text-xs font-bold text-blue-600">Health Center X</div>
+            <div className="text-xs font-bold text-blue-600">Health Center X · Maputo</div>
           </div>
         </div>
 
         {/* 4 Primary Metric Blocks */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* Block 1: Total Patients */}
-          <div className="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200 space-y-3 sm:space-y-4">
+          <div className="bg-slate-50/70 rounded-xl p-4 border border-slate-200/80 space-y-3">
             <div>
-              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">Total Patients</span>
-              <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">{metrics.totalPatients}</div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total Monitored Patients</span>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5">{metrics.totalPatients}</div>
             </div>
 
-            <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
+            <div className="space-y-1.5 pt-2 border-t border-slate-200/80 text-xs">
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-1.5 font-medium text-slate-700">
-                  <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500/20" /> HIV
+                  <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500/20" /> HIV (ART)
                 </span>
                 <span className="font-bold text-slate-900">{metrics.hivPatients}</span>
               </div>
@@ -123,7 +138,7 @@ export default function MonthlyReport({ metrics }) {
 
             <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-emerald-700 font-medium truncate">
+                <span className="flex items-center gap-1.5 text-emerald-700 font-medium whitespace-nowrap">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> Confirmed
                 </span>
                 <span className="font-bold text-emerald-700 whitespace-nowrap">
@@ -131,7 +146,7 @@ export default function MonthlyReport({ metrics }) {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-rose-600 font-medium truncate">
+                <span className="flex items-center gap-1.5 text-rose-600 font-medium whitespace-nowrap">
                   <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" /> Unconfirmed
                 </span>
                 <span className="font-bold text-rose-600 whitespace-nowrap">
@@ -151,7 +166,7 @@ export default function MonthlyReport({ metrics }) {
 
             <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-emerald-700 font-medium truncate">
+                <span className="flex items-center gap-1.5 text-emerald-700 font-medium whitespace-nowrap">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> Attended
                 </span>
                 <span className="font-bold text-emerald-700 whitespace-nowrap">
@@ -159,7 +174,7 @@ export default function MonthlyReport({ metrics }) {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-rose-600 font-medium truncate">
+                <span className="flex items-center gap-1.5 text-rose-600 font-medium whitespace-nowrap">
                   <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" /> Unconfirmed
                 </span>
                 <span className="font-bold text-rose-600 whitespace-nowrap">
@@ -179,7 +194,7 @@ export default function MonthlyReport({ metrics }) {
 
             <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-emerald-700 font-medium truncate">
+                <span className="flex items-center gap-1.5 text-emerald-700 font-medium whitespace-nowrap">
                   <Package className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> Dispensed
                 </span>
                 <span className="font-bold text-emerald-700 whitespace-nowrap">
@@ -187,7 +202,7 @@ export default function MonthlyReport({ metrics }) {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-amber-700 font-medium truncate">
+                <span className="flex items-center gap-1.5 text-amber-700 font-medium whitespace-nowrap">
                   <AlertCircle className="w-3.5 h-3.5 text-amber-500 shrink-0" /> Pending
                 </span>
                 <span className="font-bold text-amber-700 whitespace-nowrap">

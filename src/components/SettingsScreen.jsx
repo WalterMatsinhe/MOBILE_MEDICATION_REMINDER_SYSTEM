@@ -49,22 +49,26 @@ export default function SettingsScreen() {
   return (
     <div className="space-y-6 font-sans">
       
-      {/* Top Header */}
-      <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      {/* 1. PROFESSIONAL SETTINGS HEADER */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
-            <Settings className="w-4 h-4" /> System Preferences
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-1">
+            <span>System Preferences</span>
+            <span>•</span>
+            <span className="text-blue-600 font-bold">Facility Infrastructure</span>
           </div>
-          <h1 className="text-2xl font-black text-slate-900">Settings & System Configuration</h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Manage healthcare facility parameters, automated SMS dispatch timings, and clinical thresholds
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            System Configuration & Gateways
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-3xl leading-relaxed">
+            Manage Mozambique telecommunications SMS/USSD gateways, clinical adherence thresholds, and automated reminder schedules.
           </p>
         </div>
 
         {savedSuccess && (
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold animate-fade-in">
-            <CheckCircle2 className="w-4 h-4" />
-            <span>Settings updated successfully!</span>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold animate-fade-in shadow-2xs">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <span>Settings saved successfully</span>
           </div>
         )}
       </div>
@@ -73,48 +77,48 @@ export default function SettingsScreen() {
       <form onSubmit={handleSave} className="space-y-6">
         
         {/* Section 1: Health Facility Profile */}
-        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-xs space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs space-y-4">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
             <Building2 className="w-4 h-4 text-blue-600" />
             <span>Healthcare Facility Information</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Facility Name</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Facility Name</label>
               <input
                 type="text"
                 name="healthCenterName"
                 value={settings.healthCenterName}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Health District / Province</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Health District / Province</label>
               <input
                 type="text"
                 name="district"
                 value={settings.district}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Facility SMS Outbound Number</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Facility SMS Outbound Number</label>
               <input
                 type="text"
                 name="contactPhone"
                 value={settings.contactPhone}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-mono bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm font-mono bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Emergency Patient Toll-free</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Emergency Patient Toll-free</label>
               <input
                 type="text"
                 name="tollFreeLine"
@@ -127,42 +131,42 @@ export default function SettingsScreen() {
         </div>
 
         {/* Section 2: Automated Reminder Schedules & Timings */}
-        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-xs space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs space-y-4">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
             <Clock className="w-4 h-4 text-emerald-600" />
             <span>Automated Notification Schedules (Objective 3)</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Morning Dose Reminder</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Morning Dose Reminder</label>
               <input
                 type="time"
                 name="morningReminderTime"
                 value={settings.morningReminderTime}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-mono bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm font-mono bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Evening Dose Reminder</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Evening Dose Reminder</label>
               <input
                 type="time"
                 name="eveningReminderTime"
                 value={settings.eveningReminderTime}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-mono bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm font-mono bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Visit Pre-alert Advance Days</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Visit Pre-alert Advance Days</label>
               <select
                 name="appointmentAdvanceDays"
                 value={settings.appointmentAdvanceDays}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="1">1 day before appointment</option>
                 <option value="2">2 days before appointment</option>
@@ -172,12 +176,12 @@ export default function SettingsScreen() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Snooze Window Duration</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Snooze Window Duration</label>
               <select
                 name="autoSnoozeDuration"
                 value={settings.autoSnoozeDuration}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="10">10 minutes</option>
                 <option value="15">15 minutes</option>
@@ -189,26 +193,26 @@ export default function SettingsScreen() {
         </div>
 
         {/* Section 3: SMS Gateway & Channels */}
-        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-xs space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs space-y-4">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
             <Radio className="w-4 h-4 text-indigo-600" />
             <span>Cellular Gateway & Channels Integration</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Primary Telecom Gateway</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Primary Telecom Gateway</label>
               <input
                 type="text"
                 name="smsGateway"
                 value={settings.smsGateway}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">SMS Alphanumeric Sender ID</label>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">SMS Alphanumeric Sender ID</label>
               <input
                 type="text"
                 name="smsSenderId"
