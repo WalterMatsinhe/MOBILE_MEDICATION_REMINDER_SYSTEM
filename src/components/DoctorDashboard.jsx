@@ -67,124 +67,124 @@ export default function DoctorDashboard({
         </div>
       </div>
 
-      {/* 2. 6 CLINICAL KPI CARDS (ENGINEERED SO ALL TEXT FITS WITH ZERO TRUNCATION) */}
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
+      {/* 2. 6 CLINICAL KPI CARDS (ENGINEERED SO ALL ICONS & TEXT STAY 100% INSIDE CARDS WITH ZERO OVERFLOW) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2.5 sm:gap-3">
         
         {/* Card 1: Total Patients */}
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/90 shadow-2xs hover:border-blue-300 transition-all flex flex-col justify-between min-w-0">
-          <div className="flex items-start justify-between gap-1.5 mb-2">
-            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 leading-tight">
+        <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-slate-200/90 shadow-2xs hover:border-blue-300 transition-all flex flex-col justify-between min-w-0 overflow-hidden">
+          <div className="flex items-center justify-between gap-1 mb-2">
+            <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wide text-slate-500 leading-tight truncate">
               Total Patients
             </span>
-            <div className="w-6 h-6 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-              <Users className="w-3.5 h-3.5" />
+            <div className="w-5 h-5 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <Users className="w-3 h-3" />
             </div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 leading-none">
+            <div className="text-2xl sm:text-2xl xl:text-3xl font-black text-slate-900 leading-none">
               {patients.length}
             </div>
-            <div className="text-[10.5px] sm:text-[11px] text-emerald-600 font-semibold mt-2 leading-tight">
+            <div className="text-[10px] sm:text-[10.5px] text-emerald-600 font-semibold mt-2 leading-tight truncate">
               Active in cohort
             </div>
           </div>
         </div>
 
         {/* Card 2: HIV */}
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/90 shadow-2xs hover:border-rose-300 transition-all flex flex-col justify-between min-w-0">
-          <div className="flex items-start justify-between gap-1.5 mb-2">
-            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-rose-600 leading-tight">
+        <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-slate-200/90 shadow-2xs hover:border-rose-300 transition-all flex flex-col justify-between min-w-0 overflow-hidden">
+          <div className="flex items-center justify-between gap-1 mb-2">
+            <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wide text-rose-600 leading-tight">
               HIV
             </span>
-            <div className="w-6 h-6 rounded-md bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-              <Heart className="w-3.5 h-3.5 fill-rose-500/20" />
+            <div className="w-5 h-5 rounded-md bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+              <Heart className="w-3 h-3 fill-rose-500/20" />
             </div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 leading-none">
+            <div className="text-2xl sm:text-2xl xl:text-3xl font-black text-slate-900 leading-none">
               {patients.filter(p => p.condition.includes('HIV')).length}
             </div>
-            <div className="text-[10.5px] sm:text-[11px] text-slate-500 font-medium mt-2 leading-tight">
+            <div className="text-[10px] sm:text-[10.5px] text-slate-500 font-medium mt-2 leading-tight truncate">
               Regular ART
             </div>
           </div>
         </div>
 
         {/* Card 3: Diabetes */}
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/90 shadow-2xs hover:border-amber-300 transition-all flex flex-col justify-between min-w-0">
-          <div className="flex items-start justify-between gap-1.5 mb-2">
-            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-amber-600 leading-tight">
+        <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-slate-200/90 shadow-2xs hover:border-amber-300 transition-all flex flex-col justify-between min-w-0 overflow-hidden">
+          <div className="flex items-center justify-between gap-1 mb-2">
+            <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wide text-amber-600 leading-tight">
               Diabetes
             </span>
-            <div className="w-6 h-6 rounded-md bg-amber-50 text-amber-500 flex items-center justify-center shrink-0">
-              <Activity className="w-3.5 h-3.5" />
+            <div className="w-5 h-5 rounded-md bg-amber-50 text-amber-500 flex items-center justify-center shrink-0">
+              <Activity className="w-3 h-3" />
             </div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 leading-none">
+            <div className="text-2xl sm:text-2xl xl:text-3xl font-black text-slate-900 leading-none">
               {patients.filter(p => p.condition.includes('Diabetes')).length}
             </div>
-            <div className="text-[10.5px] sm:text-[11px] text-slate-500 font-medium mt-2 leading-tight">
+            <div className="text-[10px] sm:text-[10.5px] text-slate-500 font-medium mt-2 leading-tight truncate">
               Insulin / Metformin
             </div>
           </div>
         </div>
 
         {/* Card 4: Reminders */}
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/90 shadow-2xs hover:border-blue-300 transition-all flex flex-col justify-between min-w-0">
-          <div className="flex items-start justify-between gap-1.5 mb-2">
-            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 leading-tight">
+        <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-slate-200/90 shadow-2xs hover:border-blue-300 transition-all flex flex-col justify-between min-w-0 overflow-hidden">
+          <div className="flex items-center justify-between gap-1 mb-2">
+            <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wide text-slate-500 leading-tight">
               Reminders
             </span>
-            <div className="w-6 h-6 rounded-md bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
-              <Bell className="w-3.5 h-3.5" />
+            <div className="w-5 h-5 rounded-md bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+              <Bell className="w-3 h-3" />
             </div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 leading-none">
+            <div className="text-2xl sm:text-2xl xl:text-3xl font-black text-slate-900 leading-none">
               {metrics.reminders.todayTotal}
             </div>
-            <div className="text-[10.5px] sm:text-[11px] text-slate-500 font-medium mt-2 leading-tight">
+            <div className="text-[10px] sm:text-[10.5px] text-slate-500 font-medium mt-2 leading-tight truncate">
               SMS, App & USSD
             </div>
           </div>
         </div>
 
         {/* Card 5: Confirmed */}
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/90 shadow-2xs hover:border-emerald-300 transition-all flex flex-col justify-between min-w-0">
-          <div className="flex items-start justify-between gap-1.5 mb-2">
-            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-600 leading-tight">
+        <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-slate-200/90 shadow-2xs hover:border-emerald-300 transition-all flex flex-col justify-between min-w-0 overflow-hidden">
+          <div className="flex items-center justify-between gap-1 mb-2">
+            <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wide text-emerald-600 leading-tight">
               Confirmed
             </span>
-            <div className="w-6 h-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+            <div className="w-5 h-5 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-3 h-3" />
             </div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-emerald-600 leading-none">
+            <div className="text-2xl sm:text-2xl xl:text-3xl font-black text-emerald-600 leading-none">
               {metrics.reminders.todayConfirmed}
             </div>
-            <div className="text-[10.5px] sm:text-[11px] text-emerald-700 font-semibold mt-2 leading-tight">
+            <div className="text-[10px] sm:text-[10.5px] text-emerald-700 font-semibold mt-2 leading-tight truncate">
               84.4% adherence
             </div>
           </div>
         </div>
 
-        {/* Card 6: Unconfirmed */}
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/90 shadow-2xs hover:border-rose-300 transition-all flex flex-col justify-between min-w-0">
-          <div className="flex items-start justify-between gap-1.5 mb-2">
-            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-rose-600 leading-tight">
+        {/* Card 6: Unconfirmed (Immune to icon overflow) */}
+        <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-slate-200/90 shadow-2xs hover:border-rose-300 transition-all flex flex-col justify-between min-w-0 overflow-hidden">
+          <div className="flex items-center justify-between gap-1 mb-2">
+            <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wide text-rose-600 leading-tight">
               Unconfirmed
             </span>
-            <div className="w-6 h-6 rounded-md bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
-              <AlertTriangle className="w-3.5 h-3.5" />
+            <div className="w-5 h-5 rounded-md bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
+              <AlertTriangle className="w-3 h-3" />
             </div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-rose-600 leading-none">
+            <div className="text-2xl sm:text-2xl xl:text-3xl font-black text-rose-600 leading-none">
               {metrics.reminders.todayNotConfirmed}
             </div>
-            <div className="text-[10.5px] sm:text-[11px] text-slate-500 font-medium mt-2 leading-tight">
+            <div className="text-[10px] sm:text-[10.5px] text-slate-500 font-medium mt-2 leading-tight truncate">
               For outreach
             </div>
           </div>
