@@ -110,104 +110,128 @@ export default function MonthlyReport({ metrics }) {
               <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5">{metrics.totalPatients}</div>
             </div>
 
-            <div className="space-y-1.5 pt-2 border-t border-slate-200/80 text-xs">
-              <div className="flex items-center justify-between">
+            <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
+              <div className="flex items-center justify-between gap-2">
                 <span className="flex items-center gap-1.5 font-medium text-slate-700">
-                  <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500/20" /> HIV (ART)
+                  <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500/20 shrink-0" /> HIV (ART)
                 </span>
-                <span className="font-bold text-slate-900">{metrics.hivPatients}</span>
+                <span className="font-bold text-slate-900 shrink-0">{metrics.hivPatients}</span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <span className="flex items-center gap-1.5 font-medium text-slate-700">
-                  <Activity className="w-3.5 h-3.5 text-amber-500" /> Diabetes
+                  <Activity className="w-3.5 h-3.5 text-amber-500 shrink-0" /> Diabetes
                 </span>
-                <span className="font-bold text-slate-900">{metrics.diabetesPatients}</span>
+                <span className="font-bold text-slate-900 shrink-0">{metrics.diabetesPatients}</span>
               </div>
             </div>
           </div>
 
           {/* Block 2: Reminders */}
-          <div className="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200 space-y-3 sm:space-y-4">
+          <div className="bg-slate-50/70 rounded-xl p-4 border border-slate-200/80 space-y-3">
             <div>
-              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">Reminders</span>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Dispatched</div>
-              <div className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Reminders Dispatched</span>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5">
                 {metrics.reminders.monthlySent.toLocaleString()}
               </div>
             </div>
 
             <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-emerald-700 font-medium whitespace-nowrap">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> Confirmed
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Confirmed</span>
                 </span>
-                <span className="font-bold text-emerald-700 whitespace-nowrap">
-                  {metrics.reminders.monthlyConfirmed.toLocaleString()} ({metrics.reminders.monthlyConfirmedPct})
-                </span>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="font-bold text-slate-900">{metrics.reminders.monthlyConfirmed.toLocaleString()}</span>
+                  <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">
+                    {metrics.reminders.monthlyConfirmedPct}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-rose-600 font-medium whitespace-nowrap">
-                  <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" /> Unconfirmed
+
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                  <span>Unconfirmed</span>
                 </span>
-                <span className="font-bold text-rose-600 whitespace-nowrap">
-                  {metrics.reminders.monthlyUnconfirmed} ({metrics.reminders.monthlyUnconfirmedPct})
-                </span>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="font-bold text-slate-900">{metrics.reminders.monthlyUnconfirmed}</span>
+                  <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-1.5 py-0.2 rounded border border-rose-200">
+                    {metrics.reminders.monthlyUnconfirmedPct}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Block 3: Appointments */}
-          <div className="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200 space-y-3 sm:space-y-4">
+          <div className="bg-slate-50/70 rounded-xl p-4 border border-slate-200/80 space-y-3">
             <div>
-              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">Appointments</span>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Scheduled</div>
-              <div className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">{metrics.consultations.scheduled}</div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Scheduled Appointments</span>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5">{metrics.consultations.scheduled}</div>
             </div>
 
             <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-emerald-700 font-medium whitespace-nowrap">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> Attended
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Attended</span>
                 </span>
-                <span className="font-bold text-emerald-700 whitespace-nowrap">
-                  {metrics.consultations.confirmed} ({metrics.consultations.confirmedPct})
-                </span>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="font-bold text-slate-900">{metrics.consultations.confirmed}</span>
+                  <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">
+                    {metrics.consultations.confirmedPct}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-rose-600 font-medium whitespace-nowrap">
-                  <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" /> Unconfirmed
+
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                  <span>Unconfirmed</span>
                 </span>
-                <span className="font-bold text-rose-600 whitespace-nowrap">
-                  {metrics.consultations.unconfirmed} ({metrics.consultations.unconfirmedPct})
-                </span>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="font-bold text-slate-900">{metrics.consultations.unconfirmed}</span>
+                  <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-1.5 py-0.2 rounded border border-rose-200">
+                    {metrics.consultations.unconfirmedPct}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Block 4: Medication Refills */}
-          <div className="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200 space-y-3 sm:space-y-4">
+          <div className="bg-slate-50/70 rounded-xl p-4 border border-slate-200/80 space-y-3">
             <div>
-              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">Medication Refills</span>
-              <div className="text-xs text-slate-400 font-medium mt-0.5">Scheduled</div>
-              <div className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">{metrics.refills.scheduled}</div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Medication Refills</span>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5">{metrics.refills.scheduled}</div>
             </div>
 
             <div className="space-y-2 pt-2 border-t border-slate-200/80 text-xs">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-emerald-700 font-medium whitespace-nowrap">
-                  <Package className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> Dispensed
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <Package className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Dispensed</span>
                 </span>
-                <span className="font-bold text-emerald-700 whitespace-nowrap">
-                  {metrics.refills.completed} ({metrics.refills.completedPct})
-                </span>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="font-bold text-slate-900">{metrics.refills.completed}</span>
+                  <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">
+                    {metrics.refills.completedPct}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-amber-700 font-medium whitespace-nowrap">
-                  <AlertCircle className="w-3.5 h-3.5 text-amber-500 shrink-0" /> Pending
+
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span>Pending</span>
                 </span>
-                <span className="font-bold text-amber-700 whitespace-nowrap">
-                  {metrics.refills.pending} ({metrics.refills.pendingPct})
-                </span>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="font-bold text-slate-900">{metrics.refills.pending}</span>
+                  <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">
+                    {metrics.refills.pendingPct}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

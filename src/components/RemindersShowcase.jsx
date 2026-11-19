@@ -115,15 +115,15 @@ export default function RemindersShowcase() {
         </div>
       )}
 
-      {/* 2. All 4 Multi-Channel iPhones Side-by-Side with True iPhone Dimensions */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full">
+      {/* 2. All 4 Multi-Channel iPhones with Responsive Grid & Zero Overlap */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 sm:gap-8 w-full justify-items-center">
 
         {/* ================= CHANNEL 1: iPHONE SMS (MESSAGES) ================= */}
-        <div className="flex flex-col items-center">
-          <div className="w-[210px] sm:w-[220px] h-[430px] bg-[#161618] rounded-[38px] p-[6px] shadow-lg border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none shrink-0">
+        <div className="flex flex-col items-center w-full min-w-0">
+          <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
-            <div className="w-full h-full bg-[#F2F2F7] rounded-[32px] overflow-hidden flex flex-col justify-between relative text-slate-900 shadow-inner">
+            <div className="w-full h-full bg-[#F2F2F7] rounded-[34px] overflow-hidden flex flex-col justify-between relative text-slate-900 shadow-inner">
               
               {/* Dynamic Island */}
               <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
@@ -236,11 +236,11 @@ export default function RemindersShowcase() {
         </div>
 
         {/* ================= CHANNEL 2: iPHONE APP PUSH (LOCK SCREEN) ================= */}
-        <div className="flex flex-col items-center">
-          <div className="w-[210px] sm:w-[220px] h-[430px] bg-[#161618] rounded-[38px] p-[6px] shadow-lg border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none shrink-0">
+        <div className="flex flex-col items-center w-full min-w-0">
+          <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
-            <div className="w-full h-full bg-gradient-to-b from-[#1b2b4a] via-[#111c33] to-[#070b14] text-white rounded-[32px] overflow-hidden flex flex-col justify-between p-2 relative shadow-inner">
+            <div className="w-full h-full bg-gradient-to-b from-[#1b2b4a] via-[#111c33] to-[#070b14] text-white rounded-[34px] overflow-hidden flex flex-col justify-between p-2.5 relative shadow-inner">
               
               {/* Dynamic Island */}
               <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
@@ -338,11 +338,11 @@ export default function RemindersShowcase() {
         </div>
 
         {/* ================= CHANNEL 3: iPHONE VOICE CALL (PHONE APP) ================= */}
-        <div className="flex flex-col items-center">
-          <div className="w-[210px] sm:w-[220px] h-[430px] bg-[#161618] rounded-[38px] p-[6px] shadow-lg border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none shrink-0">
+        <div className="flex flex-col items-center w-full min-w-0">
+          <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
-            <div className="w-full h-full bg-gradient-to-b from-[#18181b] to-black text-white rounded-[32px] overflow-hidden flex flex-col justify-between p-2.5 relative shadow-inner">
+            <div className="w-full h-full bg-gradient-to-b from-[#18181b] to-black text-white rounded-[34px] overflow-hidden flex flex-col justify-between p-2.5 relative shadow-inner">
               
               {/* Dynamic Island */}
               <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
@@ -439,11 +439,11 @@ export default function RemindersShowcase() {
         </div>
 
         {/* ================= CHANNEL 4: iPHONE USSD (*123# CARRIER SHEET) ================= */}
-        <div className="flex flex-col items-center">
-          <div className="w-[210px] sm:w-[220px] h-[430px] bg-[#161618] rounded-[38px] p-[6px] shadow-lg border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none shrink-0">
+        <div className="flex flex-col items-center w-full min-w-0">
+          <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
-            <div className="w-full h-full bg-slate-900 text-white rounded-[32px] overflow-hidden flex flex-col justify-end p-2 relative shadow-inner">
+            <div className="w-full h-full bg-slate-900 text-white rounded-[34px] overflow-hidden flex flex-col justify-end p-2.5 relative shadow-inner">
               
               {/* Dynamic Island */}
               <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
