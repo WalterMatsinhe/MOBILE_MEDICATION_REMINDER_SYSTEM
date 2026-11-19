@@ -41,6 +41,7 @@ export default function RemindersShowcase() {
   // SMS live test simulation
   const [smsReplied, setSmsReplied] = useState(false)
   const [broadcastActive, setBroadcastActive] = useState(false)
+  const [selectedChannel, setSelectedChannel] = useState('all') // 'all', 'sms', 'push', 'voice', 'ussd'
 
   useEffect(() => {
     let interval = null
@@ -115,11 +116,49 @@ export default function RemindersShowcase() {
         </div>
       )}
 
+      {/* Channel Switcher Filter Tabs */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]">
+        {[
+          { id: 'all', label: 'All 4 Channels', icon: Smartphone, tag: 'Full Suite' },
+          { id: 'sms', label: 'SMS Messages', icon: MessageSquare, tag: 'Standard Mobile' },
+          { id: 'push', label: 'App Push Alert', icon: Bell, tag: 'Smartphone' },
+          { id: 'voice', label: 'Voice Call (IVR)', icon: Volume2, tag: 'Spoken Audio' },
+          { id: 'ussd', label: 'USSD Session', icon: Radio, tag: '*123# Protocol' }
+        ].map(tab => {
+          const Icon = tab.icon
+          const isActive = selectedChannel === tab.id
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setSelectedChannel(tab.id)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition cursor-pointer shrink-0 ${
+                isActive
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+              }`}
+            >
+              <Icon className="w-3.5 h-3.5" />
+              <span>{tab.label}</span>
+              <span className={`text-[9.5px] px-1.5 py-0.2 rounded font-mono ${
+                isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+              }`}>
+                {tab.tag}
+              </span>
+            </button>
+          )
+        })}
+      </div>
+
       {/* 2. All 4 Multi-Channel iPhones with Responsive Grid & Zero Overlap */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 sm:gap-8 w-full justify-items-center">
+      <div className={`w-full justify-items-center ${
+        selectedChannel === 'all' 
+          ? 'grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 sm:gap-8' 
+          : 'flex justify-center py-4'
+      }`}>
 
         {/* ================= CHANNEL 1: iPHONE SMS (MESSAGES) ================= */}
-        <div className="flex flex-col items-center w-full min-w-0">
+        {(selectedChannel === 'all' || selectedChannel === 'sms') && (
+        <div className="flex flex-col items-center w-full min-w-0 max-w-[280px]">
           <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
@@ -234,9 +273,11 @@ export default function RemindersShowcase() {
             <p className="text-[10px] text-slate-500 font-medium">Cellular SMS Service</p>
           </div>
         </div>
+        )}
 
         {/* ================= CHANNEL 2: iPHONE APP PUSH (LOCK SCREEN) ================= */}
-        <div className="flex flex-col items-center w-full min-w-0">
+        {(selectedChannel === 'all' || selectedChannel === 'push') && (
+        <div className="flex flex-col items-center w-full min-w-0 max-w-[280px]">
           <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
@@ -336,9 +377,11 @@ export default function RemindersShowcase() {
             <p className="text-[10px] text-slate-500 font-medium">Smartphone App Notification</p>
           </div>
         </div>
+        )}
 
         {/* ================= CHANNEL 3: iPHONE VOICE CALL (PHONE APP) ================= */}
-        <div className="flex flex-col items-center w-full min-w-0">
+        {(selectedChannel === 'all' || selectedChannel === 'voice') && (
+        <div className="flex flex-col items-center w-full min-w-0 max-w-[280px]">
           <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
@@ -437,9 +480,11 @@ export default function RemindersShowcase() {
             <p className="text-[10px] text-slate-500 font-medium">Interactive Voice Response (IVR)</p>
           </div>
         </div>
+        )}
 
         {/* ================= CHANNEL 4: iPHONE USSD (*123# CARRIER SHEET) ================= */}
-        <div className="flex flex-col items-center w-full min-w-0">
+        {(selectedChannel === 'all' || selectedChannel === 'ussd') && (
+        <div className="flex flex-col items-center w-full min-w-0 max-w-[280px]">
           <div className="w-full max-w-[225px] h-[455px] bg-[#161618] rounded-[40px] p-[6px] shadow-xl border-2 border-slate-700/80 flex flex-col justify-between relative ring-1 ring-white/5 select-none">
             
             {/* Screen Inner */}
@@ -554,6 +599,7 @@ export default function RemindersShowcase() {
             <p className="text-[10px] text-slate-500 font-medium">Carrier Interactive Menu (*123#)</p>
           </div>
         </div>
+        )}
 
       </div>
 
