@@ -63,65 +63,84 @@ export default function DoctorDashboard({
     <div className="space-y-6 font-sans">
       
       {/* 1. PROFESSIONAL CLINICAL HEADER & CONTROLS */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-2xs">
-        <div>
-          <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">
-            <span>MISAU Health Network</span>
-            <span>•</span>
-            <span className="text-blue-600 font-bold">Maputo Central Health Center</span>
-            <span>•</span>
-            <span className="text-emerald-700 font-medium">Unit MZ-042</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Clinical Health & Adherence Intelligence
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-3xl leading-relaxed">
-            Real-time longitudinal telemetry for HIV (ART) and Diabetes mellitus cohort. Dispatches automated multi-channel reminders and highlights patients requiring clinical support.
-          </p>
-        </div>
-
-        {/* Action & Filter Controls */}
-        <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-          
-          {/* Timeframe selector */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-lg text-xs font-medium border border-slate-200">
-            {[
-              { id: '7d', label: '7 Days' },
-              { id: '30d', label: '30 Days' },
-              { id: 'quarter', label: 'Quarter' },
-            ].map(t => (
-              <button
-                key={t.id}
-                onClick={() => setActiveTimeframe(t.id)}
-                className={`px-2.5 py-1 rounded-md transition cursor-pointer ${
-                  activeTimeframe === t.id 
-                    ? 'bg-white text-slate-900 font-bold shadow-2xs' 
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
+      <div className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200/90 shadow-2xs space-y-3.5">
+        
+        {/* Top Tier: Facility Telemetry Badges */}
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 font-bold text-[10px] uppercase tracking-wider border border-blue-200/70 whitespace-nowrap">
+              MISAU Health Network
+            </span>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-700 font-semibold text-xs whitespace-nowrap">
+              Maputo Central Health Center
+            </span>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-500 font-mono text-[11px] whitespace-nowrap">
+              Ambulatory Unit MZ-042
+            </span>
           </div>
 
-          {/* Export Report button */}
-          <button
-            onClick={() => showToast('Weekly clinical adherence summary exported to PDF successfully!')}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 transition cursor-pointer shadow-2xs"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Export PDF</span>
-          </button>
-
-          {/* Register Patient primary button */}
-          <button
-            onClick={() => onNavigate('pacientes')}
-            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-xs transition cursor-pointer"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Enroll Patient</span>
-          </button>
+          <div className="flex items-center gap-1.5 text-[11px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/70 whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Live Telemetry Active</span>
+          </div>
         </div>
+
+        {/* Middle Tier: Page Title & Action Controls */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+              Clinical Health & Adherence Intelligence
+            </h1>
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed max-w-2xl">
+              Real-time longitudinal telemetry for HIV (ART) and Diabetes mellitus cohort. Dispatches automated multi-channel reminders and highlights patients requiring clinical outreach.
+            </p>
+          </div>
+
+          {/* Action & Filter Controls */}
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            {/* Timeframe Selector */}
+            <div className="flex items-center bg-slate-100 p-1 rounded-lg text-xs font-medium border border-slate-200">
+              {[
+                { id: '7d', label: '7 Days' },
+                { id: '30d', label: '30 Days' },
+                { id: 'quarter', label: 'Quarter' },
+              ].map(t => (
+                <button
+                  key={t.id}
+                  onClick={() => setActiveTimeframe(t.id)}
+                  className={`px-2.5 py-1 rounded-md transition cursor-pointer text-xs ${
+                    activeTimeframe === t.id 
+                      ? 'bg-white text-slate-900 font-bold shadow-2xs' 
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Export PDF */}
+            <button
+              onClick={() => showToast('Weekly clinical adherence summary exported to PDF successfully!')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 transition cursor-pointer shadow-2xs whitespace-nowrap"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Export PDF</span>
+            </button>
+
+            {/* Enroll Patient Primary Button */}
+            <button
+              onClick={() => onNavigate('pacientes')}
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-xs transition cursor-pointer whitespace-nowrap"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              <span>Enroll Patient</span>
+            </button>
+          </div>
+        </div>
+
       </div>
 
       {toastMessage && (
